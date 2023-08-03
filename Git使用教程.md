@@ -79,5 +79,52 @@ git merge 分支名：一个分支上的提交合并到另一个分支
 
 git branch -d ：删除分支, -D 强制删除
 
-解决分支冲突：
+解决分支冲突：同时修改了同一文件同一地方，手动解决
+
+开发中分支使用原则：
+
+- master分支：线上分支，主分支
+- develop分支：开发分支
+- feature分支：从develop创建的分支，一般是同期并行开发，但不同时期上线时创建的分支
+- hotfix分支：从master派生的分支，一般作为线上bug修复使用，修复完成后合并到其他分支。
+
+### 四、远程仓库
+
+1. 配置SSH公钥
+
+   ssh-keygen -t rsa：生成公钥，如果已经存在则覆盖
+
+2. 获取公钥
+
+   cat -/.ssh/id_rsa.pub
+
+3. 验证配置
+
+   ssh -T git@github.com
+
+4. 添加远程仓库
+
+   git remote add 远端名称 仓库路径
+
+   远端名称默认为origin，仓库路径从服务器获取URL，如https://github.com/plancan/test.git。
+
+   git remote：查看远程仓库
+
+5. 推送到远程仓库
+
+   git branch --set-upstream-to=origin/远程分支的名字 本地分支的名字：建立关联
+
+   git push [-f] [--set-upstream] 远端名称 本地分支名：远端分支名
+
+   如果远程分支名和本地分支名相同，则只写本地分支。
+
+   - git push origin master
+
+   --set-upstream推送到远端的同时并且建立和远端分支的关联关系
+
+   如果当前分支和远端分支关联，则可以省略分支名和远端名
+
+   - git push
+
+   
 
